@@ -24,8 +24,8 @@ export function fitChat(size: Size, columns: number): Cells {
 }
 
 // A pasted picture's tile above the prompt: a bordered box with a label row under the picture.
+// Always this tall: a band too short for it scrolls, which beats a thumbnail too small to read.
 const TILE_ROWS = 6
-const TILE_MIN_ROWS = 2
 const TILE_MAX_COLUMNS = 40
 const TILE_CHROME = { rows: 3, columns: 2 }
 const TILE_GAP = 1
@@ -41,19 +41,13 @@ export function tileBox(size: Size | null, rows: number): Cells {
 }
 
 /**
- * One row of tiles that fits `columns` across and `maxRows` down: the tallest tiles that
- * fit, shrunk down to TILE_MIN_ROWS; past that the row is cut and the rest counted in `hidden`.
+ * One row of tiles, TILE_ROWS tall, that fits `columns` across: past the room the row is cut
+ * and the rest counted in `hidden`.
  */
-export function tileRow(sizes: readonly (Size | null)[], maxRows: number, columns: number): { boxes: Cells[]; hidden: number } {
-  const tallest = Math.min(TILE_ROWS, maxRows - TILE_CHROME.rows)
-  if (tallest < 1) return { boxes: [], hidden: sizes.length }
+export function tileRow(sizes: readonly (Size | null)[], columns: number): { boxes: Cells[]; hidden: number } {
   const widthOf = (boxes: readonly Cells[], hidden: number) =>
     boxes.reduce((w, b) => w + b.columns + TILE_CHROME.columns, 0) + TILE_GAP * Math.max(0, boxes.length - 1) + (hidden > 0 ? TILE_GAP + `+${hidden}`.length : 0)
-  let boxes: Cells[] = []
-  for (let rows = tallest; rows >= Math.min(TILE_MIN_ROWS, tallest); rows--) {
-    boxes = sizes.map(size => tileBox(size, rows))
-    if (widthOf(boxes, 0) <= columns) return { boxes, hidden: 0 }
-  }
+  const boxes = sizes.map(size => tileBox(size, TILE_ROWS))
   let kept = boxes.length
   while (kept > 0 && widthOf(boxes.slice(0, kept), boxes.length - kept) > columns) kept--
   return { boxes: boxes.slice(0, kept), hidden: boxes.length - kept }

@@ -17,7 +17,7 @@ Answer `y` to add the marketplace, pick a scope, then run `/reload-plugins` or s
 
 ## What you get
 
-- A row of thumbnails above the prompt, one per `[Image #n]` tag in the draft, sized to fit the band so it never scrolls; tiles that do not fit are counted as `+N`.
+- A row of thumbnails above the prompt, one per `[Image #n]` tag in the draft, each six rows tall; tiles that do not fit across are counted as `+N`. A terminal too short for the band scrolls it, so give the band room: a two-line status line leaves more than a four-line one.
 - `show_image(path, title?)`: a PNG at an absolute path, at most 2 MiB, drawn at the width of the chat and kept to its aspect ratio, with **Open in Preview** under it (macOS `open -a Preview`).
 - Nothing else: no video, no history, no telemetry, no updater. About 300 lines.
 

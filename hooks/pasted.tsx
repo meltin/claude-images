@@ -119,7 +119,7 @@ export const registerPasted: Register = on => {
     if (e.surface !== 'terminal' || e.props.hasSurvey) return next(e)
     const list = await read($, pastes)
     if (list.length === 0) return next(e)
-    const { boxes, hidden } = tileRow(list.map(p => p.size), e.props.maxRows, e.props.bodyColumns)
+    const { boxes, hidden } = tileRow(list.map(p => p.size), e.props.bodyColumns)
     if (boxes.length === 0) return next(e)
     const { Box, Button, Image, Text } = $.ui.resolve(e)
     const below = await next(e)

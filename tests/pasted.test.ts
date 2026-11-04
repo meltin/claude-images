@@ -30,12 +30,11 @@ test('a tile keeps its aspect within the width cap', () => {
   expect(tileBox(null, 6)).toEqual({ columns: 21, rows: 6 })
 })
 
-test('a row of tiles shrinks to fit, then is cut with a count of the rest', () => {
+test('a row of tiles is always six rows tall, and is cut with a count of the rest when too wide', () => {
   const squares = [{ width: 500, height: 500 }, { width: 500, height: 500 }, { width: 500, height: 500 }]
-  expect(tileRow(squares, 20, 100)).toEqual({ boxes: squares.map(() => ({ columns: 13, rows: 6 })), hidden: 0 })
-  expect(tileRow(squares, 20, 20)).toEqual({ boxes: squares.map(() => ({ columns: 4, rows: 2 })), hidden: 0 })
-  expect(tileRow(squares, 20, 12)).toEqual({ boxes: [{ columns: 4, rows: 2 }], hidden: 2 })
-  expect(tileRow(squares, 3, 100)).toEqual({ boxes: [], hidden: 3 })
+  expect(tileRow(squares, 100)).toEqual({ boxes: squares.map(() => ({ columns: 13, rows: 6 })), hidden: 0 })
+  expect(tileRow(squares, 20)).toEqual({ boxes: [{ columns: 13, rows: 6 }], hidden: 2 })
+  expect(tileRow(squares, 10)).toEqual({ boxes: [], hidden: 3 })
 })
 
 test('a label is centred across its tile', () => {
