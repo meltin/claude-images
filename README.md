@@ -1,9 +1,14 @@
 # Claude Images
 
-A Claude Code mod for images in the chat, both ways:
+A Claude Code mod for images in the chat, both ways.
 
-- **Pasted images**: paste an image into the prompt and a thumbnail appears above the input, instead of a bare `[Image #1]` tag. Press the number under a tile to open the paste full size.
-- **Shown images**: Claude gets one tool, `show_image`, that draws a PNG inline in place of the tool's result row, with a button that opens it in Preview. Claude uses it on its own after visual work: it screenshots a page with headless Playwright, or renders a chart or a design, and shows the result instead of asking you to open a file.
+![Claude took a screenshot of a page and shows it inline in the chat, with an Open in Preview button under it](docs/shown.png)
+
+**Shown images**: Claude gets one tool, `show_image`, that draws a PNG inline in place of the tool's result row, with a button that opens it in Preview. Claude uses it on its own after visual work: it screenshots a page with headless Chrome or Playwright, or renders a chart or a design, and shows the result instead of asking you to open a file.
+
+![A pasted image drawn as a thumbnail above the prompt, numbered to match its tag](docs/pasted.png)
+
+**Pasted images**: paste an image into the prompt and a thumbnail appears above the input, instead of a bare `[Image #1]` tag. Press the number under a tile to open the paste full size.
 
 ## Install
 
