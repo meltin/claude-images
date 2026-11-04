@@ -1,5 +1,5 @@
 // The band above the prompt: a thumbnail for each [Image #n] the draft holds, with its
-// number under it; a press on the number opens the paste full size.
+// number under it; a press on the number opens the paste in Preview.
 //
 // Claude Code raises no event for an image paste (the tag shows up on the next keystroke),
 // so the draft is polled. It caches each paste as <tmp>/claude-<uid>/<project>/<session>/images/<n>.<ext>.
@@ -139,7 +139,7 @@ export const registerPasted: Register = on => {
           {source === null ? (
             <Text dimColor>{label}</Text>
           ) : (
-            <Button key={`open-${paste.n}`} plain dimColor label={label} onPress={() => void $.process.run(['open', source]).catch(() => undefined)} />
+            <Button key={`open-${paste.n}`} plain dimColor label={label} onPress={() => void $.process.run(['open', '-a', 'Preview', source]).catch(() => undefined)} />
           )}
         </Box>
       )

@@ -1,14 +1,16 @@
 # Claude Images
 
+[日本語](README.ja.md)
+
 A Claude Code mod for images in the chat, both ways.
 
 ![Claude took a screenshot of a page and shows it inline in the chat, with an Open in Preview button under it](docs/shown.png)
 
-**Shown images**: Claude gets one tool, `show_image`, that draws a PNG inline in place of the tool's result row, with a button that opens it in Preview. Claude uses it on its own after visual work: it screenshots a page with headless Chrome or Playwright, or renders a chart or a design, and shows the result instead of asking you to open a file.
+**Shown images**: the mod registers one tool for Claude, `show_image`. When Claude calls it with the path of a PNG, the picture is drawn inline in place of the tool's result row, with an **Open in Preview** button under it. The tool's description tells Claude to use it after visual work without being asked, so Claude screenshots a page with headless Chrome or Playwright, or renders a chart or a design, and shows you the result instead of asking you to open a file.
 
 ![A pasted image drawn as a thumbnail above the prompt, numbered to match its tag](docs/pasted.png)
 
-**Pasted images**: paste an image into the prompt and a thumbnail appears above the input, instead of a bare `[Image #1]` tag. Press the number under a tile to open the paste full size.
+**Pasted images**: paste an image into the prompt and a thumbnail appears above the input, instead of a bare `[Image #1]` tag. Press the number under a tile to open the paste in Preview.
 
 ## Install
 
@@ -23,7 +25,7 @@ Answer `y` to add the marketplace, pick a scope, then run `/reload-plugins` or s
 ## What you get
 
 - A row of thumbnails above the prompt, one per `[Image #n]` tag in the draft, each six rows tall; tiles that do not fit across are counted as `+N`. A terminal too short for the band scrolls it, so give the band room: a two-line status line leaves more than a four-line one.
-- `show_image(path, title?)`: a PNG at an absolute path, at most 2 MiB, drawn at the width of the chat and kept to its aspect ratio, with **Open in Preview** under it (macOS `open -a Preview`).
+- `show_image(path, title?)`: a tool this mod adds for Claude. A PNG at an absolute path, at most 2 MiB, drawn at the width of the chat and kept to its aspect ratio, with **Open in Preview** under it (macOS `open -a Preview`).
 - Nothing else: no video, no history, no telemetry, no updater. About 300 lines.
 
 ## Terminals
