@@ -1,0 +1,13 @@
+{
+  "name": "claude-images",
+  "description": "images: a Claude Code mod that shows pasted images above the prompt and draws Claude's own pictures inline in the chat",
+  "owner": {
+    "name": "ixxq"
+  },
+  "plugins": [
+    {
+      "name": "images",
+      "source": "./"
+    }
+  ]
+}

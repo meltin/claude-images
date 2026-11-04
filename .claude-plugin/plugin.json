@@ -1,0 +1,25 @@
+{
+  "name": "images",
+  "version": "0.1.0",
+  "description": "Images in the Claude Code chat, both ways: thumbnails of the images you paste, and a show_image tool that draws a PNG inline with a button that opens it in Preview",
+  "author": {
+    "name": "ixxq",
+    "url": "https://github.com/ixxq"
+  },
+  "homepage": "https://github.com/ixxq/claude-images",
+  "repository": "https://github.com/ixxq/claude-images",
+  "license": "MIT",
+  "keywords": [
+    "images",
+    "paste",
+    "thumbnails",
+    "screenshots",
+    "png",
+    "kitty",
+    "ghostty",
+    "mod",
+    "terminal",
+    "claude-code"
+  ],
+  "types": "./types/index.d.ts"
+}
