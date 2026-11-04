@@ -1,47 +1,47 @@
 # Claude Images
 
-[日本語](README.ja.md)
+English | [日本語](README.ja.md)
 
-A Claude Code mod for images in the chat, both ways.
+A Claude Code mod for working with images directly in chat. It lets Claude show you images inline and gives you thumbnail previews for images you paste.
 
-![Claude took a screenshot of a page and shows it inline in the chat, with an Open in Preview button under it](docs/shown.png)
+![Claude takes a screenshot of a page and displays it inline within the chat, with an Open in Preview button below the image](docs/shown.png)
 
-**Shown images**: the mod registers one tool for Claude, `show_image`. When Claude calls it with the path of a PNG, the picture is drawn inline in place of the tool's result row, with an **Open in Preview** button under it. The tool's description tells Claude to use it after visual work without being asked, so Claude screenshots a page with headless Chrome or Playwright, or renders a chart or a design, and shows you the result instead of asking you to open a file.
+**Images from Claude**: This mod adds a tool called `show_image` to Claude. When Claude invokes it with a path to a PNG, the image renders right in the chat instead of a standard tool output line, accompanied by an "Open in Preview" button. The tool's description prompts Claude to use it automatically after visual work, even if you didn't ask. So after taking a screenshot (via headless Chrome or Playwright) or generating a chart or design, Claude shows you the result on the spot instead of telling you to open the file yourself.
 
-![A pasted image drawn as a thumbnail above the prompt, numbered to match its tag](docs/pasted.png)
+![Pasted images shown as thumbnails above the prompt, numbered to match their tags](docs/pasted.png)
 
-**Pasted images**: paste an image into the prompt and a thumbnail appears above the input, instead of a bare `[Image #1]` tag. Press the number under a tile to open the paste in Preview.
+**Pasted images**: Paste an image into your prompt, and along with the usual `[Image #1]` tag, you'll get an actual thumbnail preview right above the input box. Clicking the number below a thumbnail opens the full image in Preview.
 
-## Install
+## Installation
 
-Inside Claude Code, run:
+Run this inside Claude Code:
 
 ```
 /plugin install images --marketplace ixxq/claude-images
 ```
 
-Answer `y` to add the marketplace, pick a scope, then run `/reload-plugins` or start a new session.
+Type `y` to approve adding the marketplace, pick a scope, and then either run `/reload-plugins` or restart your session.
 
-## What you get
+## Details
 
-- A row of thumbnails above the prompt, one per `[Image #n]` tag in the draft, each six rows tall; tiles that do not fit across are counted as `+N`. A terminal too short for the band scrolls it, so give the band room: a two-line status line leaves more than a four-line one.
-- `show_image(path, title?)`: a tool this mod adds for Claude. A PNG at an absolute path, at most 2 MiB, drawn at the width of the chat and kept to its aspect ratio, with **Open in Preview** under it (macOS `open -a Preview`).
-- Nothing else: no video, no history, no telemetry, no updater. About 300 lines.
+- Thumbnails: 6 lines tall, and anything that overflows horizontally collapses into a `+N` badge. Make sure your terminal has enough vertical clearance so the thumbnail strip doesn't scroll off-screen.
+- `show_image(path, title?)`: Takes an absolute path to a PNG (up to 2 MiB) and fits it to the chat width while keeping the aspect ratio intact. "Open in Preview" uses macOS `open -a Preview`.
+- That's it. No video, no history tracking, no telemetry, no auto-updates. The entire codebase is roughly 300 lines.
 
-## Terminals
+## Terminal support
 
-Pictures draw where Claude Code's own `Image` element draws: Ghostty, kitty and terminals that speak the kitty graphics protocol, Orca included. Elsewhere each picture's alt text is drawn in its place (`[Image #1]`, `[image: title]`).
+Images work in any terminal that supports Claude Code's native `Image` component: Ghostty, kitty, Orca, and other terminals with kitty graphics protocol support. On unsupported terminals, you'll see fallback alt text instead (like `[Image #1]` or `[image: title]`).
 
-A paste that is not a PNG (a JPEG from a browser, say) is converted once with `sips`, so the thumbnail needs macOS; on Linux such a tile says `no preview`.
+Non-PNG formats (like JPEGs copied from a browser) are converted to PNG once, when pasted, using macOS's built-in `sips` utility. Because of this, pasted thumbnails require macOS; on Linux, they will show as `no preview`.
 
-## Developing
+## Development
 
 ```
 claude plugin validate .
 claude plugin test .
 ```
 
-Or install from the folder, so edits are picked up with `/reload-plugins`:
+To live-reload your changes with `/reload-plugins`, install directly from your local directory:
 
 ```
 claude plugin marketplace add ~/dev/oss/claude-images
