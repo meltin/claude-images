@@ -17,7 +17,7 @@ A Claude Code mod for working with images directly in chat. It lets Claude show 
 Run this inside Claude Code:
 
 ```
-/plugin install images --marketplace ixxq/claude-images
+/plugin install images --marketplace unmett/claude-images
 ```
 
 Type `y` to approve adding the marketplace, pick a scope, and then either run `/reload-plugins` or restart your session.
