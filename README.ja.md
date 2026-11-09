@@ -17,7 +17,7 @@
 Claude Code の中で次を実行します。
 
 ```
-/plugin install images --marketplace unmett/claude-images
+/plugin install images --marketplace meltin/claude-images
 ```
 
 marketplace の追加を `y` で承認し、スコープを選んでから、`/reload-plugins` を実行するか新しいセッションを開始してください。

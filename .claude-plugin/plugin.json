@@ -3,11 +3,11 @@
   "version": "0.1.2",
   "description": "Images in the Claude Code chat, both ways: thumbnails of the images you paste, and a show_image tool that draws a PNG inline with a button that opens it in Preview",
   "author": {
-    "name": "unmett",
-    "url": "https://github.com/unmett"
+    "name": "meltin",
+    "url": "https://github.com/meltin"
   },
-  "homepage": "https://github.com/unmett/claude-images",
-  "repository": "https://github.com/unmett/claude-images",
+  "homepage": "https://github.com/meltin/claude-images",
+  "repository": "https://github.com/meltin/claude-images",
   "license": "MIT",
   "keywords": [
     "images",
